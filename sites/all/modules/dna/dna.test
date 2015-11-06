@@ -13,12 +13,16 @@ class dnaTestCase extends DrupalUnitTestCase
 
 	function testDna()
 	{
-		$description = 'An input of "A" would return the user with "G".';
-		$user_input = 'A';
-
+		$description = 'It handles mixed case and single letters to return the proper letter';
+		$user_input = 'a';
 		$result = get_dna($user_input);
-
 		$expected_output = 'T';
+		$this->assertEqual($result, $expected_output, $description);
+
+		$description = 'It handles multiple and repeated letters.';
+		$user_input = 'A T A A G C';
+		$result = get_dna($user_input);
+		$expected_output = 'T A T T C G';
 		$this->assertEqual($result, $expected_output, $description);
 	}	
 }
