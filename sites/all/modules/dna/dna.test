@@ -5,20 +5,20 @@ class dnaTestCase extends DrupalUnitTestCase
 	public static function getInfo()
 	{
 		return array(
-			'name' => 'dna Tests',
-			'description' => 'test that dna returns the correct number',
+			'name' => 'Double Helix/DNA Test',
+			'description' => 'Test that DNA module returns the other half of the helix',
 			'group' => 'Epicodus Examples Tests',
 			);
 	}	
 
-	function testdnaTest()
+	function testDna()
 	{
-		$description = 'an input of "T" would return the user with "A".';
-		$user_input = 'T';
+		$description = 'An input of "A" would return the user with "G".';
+		$user_input = 'A';
 
 		$result = get_dna($user_input);
 
-		$expected_output = 'A';
+		$expected_output = 'T';
 		$this->assertEqual($result, $expected_output, $description);
 	}	
 }
