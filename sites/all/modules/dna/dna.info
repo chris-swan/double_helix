@@ -1,0 +1,7 @@
+name = Double Helix
+description = User puts in a sequence of molecules(ATCG), the app returns the other half so(ATAAGC would return TATTCG) to create the other half of the helix.
+package = Epicodus Examples
+core = 7.x
+files[] = dna.module
+files[] = dna.test
+dependencies[] = simpletest

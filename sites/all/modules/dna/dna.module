@@ -1,0 +1,73 @@
+<?php
+
+function dna_menu() {
+  $items = array();
+  $items['dna'] = array(
+    'title' =>'dna Sequence',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dna_form'),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['dna_success_page'] = array(
+    'title' => 'Success!',
+    'page callback' => 'dna_success',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function dna_form() {
+
+   $form['info about it'] = array(
+    '#markup' => '<p>Enter in a molecule sequence consisting of the letters: A, T, C, and G. The resulting output will be the other half of the double helix created by the input as is in DNA.</p>'
+    );
+
+  $form['molecule'] = array(
+    '#title' => 'molecule',
+    '#type' => 'textfield',
+    '#description' => t('Please enter a molecule sequence consisting of letters A, T, C & G.'),
+    '#element_validate' =>array('element_validate_molecules'),
+    '#required' => TRUE,
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Enter the number',
+  );
+  return $form;
+}
+
+//Ensure no one is trying any tricks:
+function element_validate_molecules($element) {
+  $user_input = strtoupper($element['#value']);
+  $user_words = str_split($user_input);
+    $accepted = ['A', 'T', 'C', 'G'];
+  foreach($user_words as $input)
+    if (!in_array($input, $accepted)) {
+      form_error($element, t('the character: ' . $input . ' is not allowed, please try again.'));
+    }
+}
+
+function dna_form_submit($form, &$form_state) {
+  $user_input = $form_state['values']['molecule'];
+
+  $_SESSION['dna_output'] = get_dna($user_input);
+
+  $form_state['redirect'] = 'dna_success_page';
+}
+
+function get_dna($user_input) {
+
+  $dna_number = $user_input;
+
+  return $dna_number;
+
+}
+
+function dna_success() {
+  $dna_sequence = $_SESSION['dna_output'];
+  return $dna_sequence;
+  }
