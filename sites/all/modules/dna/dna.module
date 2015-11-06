@@ -21,9 +21,9 @@ function dna_menu() {
 
 function dna_form() {
 
-   $form['info about it'] = array(
-    '#markup' => '<p>Enter in a molecule sequence consisting of the letters: A, T, C, and G. The resulting output will be the other half of the double helix created by the input as is in DNA.</p>'
-    );
+  $form['info about it'] = array(
+    '#markup' => '<p>Enter in a molecule sequence consisting of the letters: A, T, C, and G. The resulting output will be the other half of the double helix paired to your input.</p>'
+  );
 
   $form['molecule'] = array(
     '#title' => 'molecule',
@@ -40,14 +40,15 @@ function dna_form() {
   return $form;
 }
 
-//Ensure only accepeted letters are entered:
+//Ensure only accepeted letters(or blank space between letters) are entered:
 function element_validate_molecules($element) {
   $user_input = strtoupper($element['#value']);
   $user_letters = str_split($user_input);
-    $accepted = ['A', 'T', 'C', 'G', ' '];
+  $accepted = ['A', 'T', 'C', 'G', ' '];
+
   foreach($user_letters as $input)
     if (!in_array($input, $accepted)) {
-      form_error($element, t('the character: "' . $input . '" is not allowed, please try again.'));
+      form_error($element, t('the character: "' . $input . '" is not allowed.'));
     }
 }
 
@@ -60,6 +61,7 @@ function dna_form_submit($form, &$form_state) {
 }
 
 function get_dna($user_input) {
+  //Set all inputs to upper, then use the key to create the double helix sequence of allowed inputs:
   $upper_case_molecules = strtoupper($user_input);
   $helix_key = array('A' => 'T', 'T' => 'A', 'C' => 'G', 'G' => 'C', ' ' => ' ');
   $double_helix = strtr($upper_case_molecules, $helix_key);
@@ -70,4 +72,4 @@ function get_dna($user_input) {
 function dna_success() {
   $dna_sequence = $_SESSION['dna_output'];
   return $dna_sequence;
-  }
+}
