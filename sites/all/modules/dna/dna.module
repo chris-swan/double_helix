@@ -64,8 +64,7 @@ function get_dna($user_input) {
   $helix_key = array('A' => 'T', 'T' => 'A', 'C' => 'G', 'G' => 'C', ' ' => ' ');
   $double_helix = strtr($upper_case_molecules, $helix_key);
 
-  return $double_helix;
-
+  return 'Your half of hte DNA helix is: <br>' . $user_input . '<br> The other half of the helix is: <br>' . $double_helix;
 }
 
 function dna_success() {
