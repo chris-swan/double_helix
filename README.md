@@ -5,7 +5,7 @@
 #### By Chris Swan
 
 ## Description
-A Drupal code review to set up AJAX and also set up a test in drupal and run the test for a logic problem.
+A Drupal code review to set up AJAX and also set up a test in drupal and run a test for checking the function in dna.module - an app that will return the second half of a double helix when the first half of the letters(A, T C or G) are entered.
 
 ## Setup
 
@@ -25,7 +25,10 @@ Password: root
  1. Clone repository.
  2. Direct your favorite Apache server to the repository as document root and start the server.
  3. Open PHPMyAdmin and import the database found in /sites/backup-db
- 4. Direct your browser to localhost
+ 4. Set Database user to 'helixadmin' with password 'root'
+ 5. Direct your browser to localhost
+ 6. Use user name 'helixadmin' and password 'root' to log into site.
+ 7. Enjoy
 
 ## Technologies Used
 
