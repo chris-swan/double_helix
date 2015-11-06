@@ -54,9 +54,7 @@ function element_validate_molecules($element) {
 
 function dna_form_submit($form, &$form_state) {
   $user_input = $form_state['values']['molecule'];
-
   $_SESSION['dna_output'] = get_dna($user_input);
-
   $form_state['redirect'] = 'dna_success_page';
 }
 
@@ -66,7 +64,7 @@ function get_dna($user_input) {
   $helix_key = array('A' => 'T', 'T' => 'A', 'C' => 'G', 'G' => 'C', ' ' => ' ');
   $double_helix = strtr($upper_case_molecules, $helix_key);
 
-  return 'Your half of hte DNA helix is: <br>' . $user_input . '<br> The other half of the helix is: <br>' . $double_helix;
+  return 'Your inputted half of the DNA helix is: <br>' . $user_input . '<br> The other half of the helix is: <br>' . $double_helix;
 }
 
 function dna_success() {
