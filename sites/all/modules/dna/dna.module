@@ -35,7 +35,7 @@ function dna_form() {
 
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => 'Enter the number',
+    '#value' => 'Double Helix it!',
   );
   return $form;
 }
@@ -45,9 +45,9 @@ function element_validate_molecules($element) {
   $user_input = strtoupper($element['#value']);
   $user_letters = str_split($user_input);
     $accepted = ['A', 'T', 'C', 'G'];
-  foreach($user_words as $input)
+  foreach($user_letters as $input)
     if (!in_array($input, $accepted)) {
-      form_error($element, t('the character: ' . $input . ' is not allowed, please try again.'));
+      form_error($element, t('the character: "' . $input . '" is not allowed, please try again.'));
     }
 }
 
@@ -61,7 +61,7 @@ function dna_form_submit($form, &$form_state) {
 
 function get_dna($user_input) {
 
-  $helix = $user_input;
+  $helix = strtoupper($user_input);
 
   return $helix;
 
