@@ -65,11 +65,9 @@ function get_dna($user_input) {
   $double_helix = strtr($upper_case_molecules, $helix_key);
 
   return $double_helix;
-
-  //'Your inputted half of the DNA helix was: <br>' . $user_input . '<br> The output and other half of the helix is: <br>' .
 }
 
 function dna_success() {
   $dna_sequence = $_SESSION['dna_output'];
-  return $dna_sequence;
+  return 'The output and other half of the helix is: <br>' .$dna_sequence;
 }
